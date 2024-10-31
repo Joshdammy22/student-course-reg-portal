@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Course Detail - {{ course.title }}
+{% endblock %}
+
+{% block content %}
+<!-- Custom CSS to override background image -->
+<style>
+    body {
+        background-image: none !important; /* Disable background image */
+        background-color: #f5f5f5; /* Set a solid background color */
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="jumbotron" style="background-color: rgba(255, 255, 255, 0.8);">
+        <h1 class="display-4">{{ course.title }}</h1>
+        <p class="lead">{{ course.description }}</p>
+        <hr class="my-4">
+        <p>Course Code: {{ course.code }}</p>
+        <p>Lecturer: {{ course.lecturer.first_name }} {{ course.lecturer.last_name }}</p>
+    </div>
+
+    <div class="jumbotron" style="background-color: rgba(255, 255, 255, 0.8);">
+        <h2>Assignments</h2>
+        <ul class="list-group">
+            {% for assignment in assignments %}
+            <li class="list-group-item">
+                <h5>{{ assignment.title }}</h5>
+                <p>{{ assignment.description }}</p>
+                <p>Due Date: {{ assignment.due_date }}</p>
+            </li>
+            {% empty %}
+            <li class="list-group-item">No assignments for this course yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="jumbotron" style="background-color: rgba(255, 255, 255, 0.8);">
+        <h2>Attendance</h2>
+        {% if attendance %}
+            <p>You have already marked your attendance as: {{ attendance.get_status_display }}</p>
+        {% else %}
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Mark Attendance</button>
+            </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

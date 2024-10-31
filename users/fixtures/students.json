@@ -1,0 +1,62 @@
+[
+    {
+        "model": "users.preexistingstudent",
+        "pk": 1,
+        "fields": {
+            "first_name": "John",
+            "last_name": "Doe",
+            "faculty": "Science",
+            "department": "Computer Science",
+            "gender": "Male",
+            "matric_number": "CS2021001"
+        }
+    },
+    {
+        "model": "users.preexistingstudent",
+        "pk": 2,
+        "fields": {
+            "first_name": "Jane",
+            "last_name": "Smith",
+            "faculty": "Arts",
+            "department": "English",
+            "gender": "Female",
+            "matric_number": "EN2021002"
+        }
+    },
+    {
+        "model": "users.preexistingstudent",
+        "pk": 3,
+        "fields": {
+            "first_name": "Michael",
+            "last_name": "Johnson",
+            "faculty": "Engineering",
+            "department": "Mechanical Engineering",
+            "gender": "Male",
+            "matric_number": "ME2021003"
+        }
+    },
+    {
+        "model": "users.preexistingstudent",
+        "pk": 4,
+        "fields": {
+            "first_name": "Emily",
+            "last_name": "Williams",
+            "faculty": "Business",
+            "department": "Marketing",
+            "gender": "Female",
+            "matric_number": "MK2021004"
+        }
+    },
+    {
+        "model": "users.preexistingstudent",
+        "pk": 5,
+        "fields": {
+            "first_name": "David",
+            "last_name": "Brown",
+            "faculty": "Science",
+            "department": "Physics",
+            "gender": "Male",
+            "matric_number": "PH2021005"
+        }
+    }
+]

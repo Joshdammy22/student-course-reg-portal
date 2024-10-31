@@ -1,0 +1,81 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+db.sqlite3
+/media
+
+# If you are using sessions, you can also add session data files here
+# If you're using SQLite or other databases, you can include them here as well
+*.db
+
+# Environment variables
+.env
+
+# Django migrations
+**/migrations/*
+
+
+
+# Media files
+/media/
+
+# Django collected static files
+/staticfiles/
+
+# Django cache files
+*.cache
+.cache/
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Node.js (if you are using it)
+node_modules/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# JetBrains
+*.idea/
+*.iml
+*.iws
+.idea/
+
+# VSCode
+.vscode/
+.history/
+
+# Other
+*.swp
+*~
+*.swo
+*.bak
+*.orig
+
+# Logs
+*.log
+*.out
+*.err
+

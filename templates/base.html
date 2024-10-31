@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Student Course Registration Portal">
+    <title>Student Course Registration Portal - {{ title }}</title>
+     <!-- Google Fonts -->
+     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+     <!-- Font Awesome -->
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'my-fav.png' %}">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link href="{% static 'styles.css' %}" rel="stylesheet">
+    
+    <style>
+        body {
+            background-image: url('{% static 'images/mybg.jpg' %}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: rgba(255, 255, 255, 0.8);
+            min-height: 130vh;
+            display: flex;
+            flex-direction: column;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif; /* Set headings to Playfair Display for a classic look */
+        }
+        /* Enhancing Navbar */
+        .navbar {
+            font-family: 'Roboto', sans-serif;
+            background-color: #343a40;
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff;
+            font-size: 1.1rem;
+            padding: 0.5rem 1.5rem;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffd700;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        .navbar-brand {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            color: #ffd700;
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-nav .nav-link {
+                padding: 0.75rem 1rem;
+                font-size: 1rem;
+            }
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+
+    <!-- Extra CSS Block -->
+    {% block extra_css %}
+    {% endblock %}
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+        <a class="navbar-brand" href="{% url 'home' %}" style="padding-left: 20px;">
+            <img src="{% static 'my-fav.png' %}" alt="Course Registration Icon" style="height: 40px;">
+        </a>        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                    {% if user.student %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'student_dashboard' %}">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Course:available_courses' %}">Available Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Course:student_courses' %}">My Courses</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+                            {% csrf_token %}
+                            <button type="submit">Logout</button>
+                        </form>
+                        <a class="nav-link" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'student_register' %}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'student_login' %}">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container main-content">
+        {% if messages %}
+    <div class="flash-container" style="position: absolute; top: 80px; left: 50%; transform: translateX(-50%); z-index: 9999; max-width: 500px; width: 100%;">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show text-center" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+        {% block content %}
+
+        {% endblock %}
+    </div>
+
+    <footer style="background-color: #343a40; padding: 5px; text-align: center; font-size: 14px; color: white">
+        <p>&copy; {{ year }} Student Course Registration System</p>
+    </footer>
+
+    <script>
+        // Auto-hide flash messages after 7 seconds
+        setTimeout(function() {
+            let flashMessages = document.querySelectorAll('.alert');
+            flashMessages.forEach(function(flash) {
+                flash.classList.remove('show'); // Fade out the alert
+                flash.classList.add('fade'); // Bootstrap's fade class for smooth fading
+            });
+        }, 7000); // 7 seconds
+    </script>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

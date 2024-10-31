@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load custom_filters %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h2>{{ title }}</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="id_name">Title:</label>
+                    {{ form.title|add_class:"form-control" }}
+                </div>
+                <div class="form-group">
+                    <label for="id_code">Code:</label>
+                    {{ form.code|add_class:"form-control" }}
+                </div>
+                <div class="form-group">
+                    <label for="id_description">Description:</label>
+                    {{ form.description|add_class:"form-control" }}
+                </div>
+                <div class="form-group">
+                    <label for="id_lecturer">Lecturer:</label>
+                    {{ form.lecturer|add_class:"form-control" }}
+                </div>
+                <div class="form-group">
+                    <label for="id_course_image">Course Image (Optional):</label>
+                    {{ form.course_image|add_class:"form-control-file" }}
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+[
+    {
+        "model": "users.preexistinglecturer",
+        "pk": 1,
+        "fields": {
+            "first_name": "Alice",
+            "last_name": "White",
+            "university_email": "alice.white@university.edu",
+            "employee_id": "LEC2021001",
+            "gender": "Female"
+        }
+    },
+    {
+        "model": "users.preexistinglecturer",
+        "pk": 2,
+        "fields": {
+            "first_name": "Bob",
+            "last_name": "Green",
+            "university_email": "bob.green@university.edu",
+            "employee_id": "LEC2021002",
+            "gender": "Male"
+        }
+    },
+    {
+        "model": "users.preexistinglecturer",
+        "pk": 3,
+        "fields": {
+            "first_name": "Carol",
+            "last_name": "Black",
+            "university_email": "carol.black@university.edu",
+            "employee_id": "LEC2021003",
+            "gender": "Female"
+        }
+    },
+    {
+        "model": "users.preexistinglecturer",
+        "pk": 4,
+        "fields": {
+            "first_name": "David",
+            "last_name": "Brown",
+            "university_email": "david.brown@university.edu",
+            "employee_id": "LEC2021004",
+            "gender": "Male"
+        }
+    },
+    {
+        "model": "users.preexistinglecturer",
+        "pk": 5,
+        "fields": {
+            "first_name": "Eve",
+            "last_name": "Clark",
+            "university_email": "eve.clark@university.edu",
+            "employee_id": "LEC2021005",
+            "gender": "Female"
+        }
+    }
+]

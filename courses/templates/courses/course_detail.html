@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Course Detail - {{ course.title }}
+{% endblock %}
+
+{% block content %}
+<!-- Custom CSS to override background image -->
+<style>
+    body {
+        background-image: none !important; /* Disable background image */
+        background-color: #f5f5f5; /* Set a solid color (adjust as necessary) */
+    }
+    .course-image {
+        max-width: 300px;  /* Set a maximum width for the course image */
+        height: auto;      /* Keep the image aspect ratio */
+        margin-bottom: 20px; /* Add space between the image and content */
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="jumbotron" style="background: rgba(255, 255, 255, 0.8); padding: 2rem;">
+        <!-- Display the course image if it exists -->
+        {% if course.course_image %}
+            <img src="{{ course.course_image.url }}" alt="{{ course.title }}" class="course-image">
+        {% endif %}
+        
+        <h2>Course: {{ course.title }}</h2>
+        <p><strong>Code:</strong> {{ course.code }}</p>
+        <p><strong>Description:</strong> {{ course.description }}</p>
+        <p><strong>Lecturer:</strong> {{ course.lecturer }}</p> <!-- Since lecturer is a CharField -->
+        
+        <h3>Students Enrolled:</h3>
+        <ul class="list-group">
+            {% for student in course.students.all %}
+                <li class="list-group-item">{{ student.first_name }} {{ student.last_name }}</li>
+            {% empty %}
+                <li class="list-group-item">No students enrolled in this course yet.</li>
+            {% endfor %}
+        </ul>
+
+        <div class="mt-4">
+            <a class="btn btn-secondary" href="{% url 'Course:list_courses' %}">Back to Courses</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

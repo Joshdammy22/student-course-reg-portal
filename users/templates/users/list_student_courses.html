@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>My Courses</h2>
+    <ul class="list-group">
+        {% for assignment in assignments %}
+            <li class="list-group-item">
+                <h4>{{ assignment.course.name }}</h4>
+                <a href="{% url 'mark_attendance' assignment.course.id %}" class="btn btn-primary">Mark Attendance</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

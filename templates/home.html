@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="jumbotron p-5" style="background-color: rgba(0, 0, 0, 0.6); border-radius: 10px; color: white;">
+        <h1 class="display-4">Welcome to the Course Registration Portal</h1>
+        <p class="lead">This is a simple course registration system for students.</p>
+        <hr class="my-4" style="border-color: rgba(255, 255, 255, 0.3);">
+        
+        {% if user.is_authenticated %}
+            <p>Welcome back, {{ user.first_name }}!</p>
+            {% if user.is_student %}
+                <a class="btn btn-primary btn-lg" href="{% url 'student_dashboard' %}" role="button">Go to Student Dashboard</a>
+            {% endif %}
+        {% else %}
+            <p>Please register to access your dashboard.</p>
+            <a class="btn btn-primary btn-lg" href="{% url 'student_register' %}" role="button">Student Register</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

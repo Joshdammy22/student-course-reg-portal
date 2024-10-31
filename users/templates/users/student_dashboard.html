@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Student Dashboard
+{% endblock %}
+
+{% block content %}
+<!-- Custom CSS to override background image -->
+<style>
+    body {
+        background-image: none !important; /* Disable background image */
+        background-color: #f5f5f5; /* Set a solid color (you can adjust this color) */
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="jumbotron" style="background: rgba(255, 255, 255, 0.8); padding: 2rem;">
+        <h1 class="display-4">Welcome to Your Dashboard! 👋</h1>
+        <p class="lead">Here you can view your courses.</p>
+        <hr class="my-4">
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h3>Your Courses</h3>
+                <ul class="list-group">
+                    {% for course in courses %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="{% url 'Course:student_course_detail' course.id %}">{{ course.title }}</a>
+                            <span class="badge badge-primary badge-pill">{{ course.code }}</span>
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item">You haven't registered for any courses yet.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
