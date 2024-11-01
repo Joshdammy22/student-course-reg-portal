@@ -1,6 +1,6 @@
 # Student Course Registration Portal
 
-![Student Course Registration Image](images/course-image.png)
+![Student Course Registration Image](https://github.com/Joshdammy22/student-course-reg-portal/blob/main/static/images/mybg.jpg?raw=true)
 
 
 A web application that allows students to browse available courses, register for them, and manage their enrolled courses. The portal is built using Django and provides a user-friendly interface for both students and course administrators.
